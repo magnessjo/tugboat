@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Harbor Buddy Tugboat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <div class="checkout-layout">
+
+    <!-- Left Column — Order Summary (dark) -->
+    <aside class="order-summary">
+      <div class="summary-inner">
+        <a href="index.html" class="summary-logo">Harbor Buddy</a>
+        <p class="summary-headline">Pay Shoreline Ventures LLC</p>
+        <p class="summary-total-amount" id="total-display">$20.98</p>
+
+        <div class="order-items">
+          <div class="order-item">
+            <div class="item-image">
+              <img src="images/600497.jpg" alt="Harbor Buddy Tugboat">
+            </div>
+            <div class="item-details">
+              <p class="item-name">Harbor Buddy Tugboat</p>
+              <p class="item-variant">Cruiser</p>
+            </div>
+            <div class="item-quantity">
+              <button class="qty-btn" data-action="decrease" aria-label="Decrease quantity">−</button>
+              <span id="item-qty">1</span>
+              <button class="qty-btn" data-action="increase" aria-label="Increase quantity">+</button>
+            </div>
+            <p class="item-price" id="line-total">$14.99</p>
+          </div>
+        </div>
+
+        <div class="order-breakdown">
+          <div class="breakdown-row">
+            <span>Subtotal</span>
+            <span id="subtotal">$14.99</span>
+          </div>
+          <div class="breakdown-row">
+            <span>Shipping</span>
+            <span id="shipping">$5.99</span>
+          </div>
+          <div class="breakdown-row">
+            <span>Tax</span>
+            <span id="tax">$0.00</span>
+          </div>
+          <div class="breakdown-row total">
+            <span>Total due</span>
+            <span id="total-due">$20.98</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Column — Payment Form (light) -->
+    <main class="payment-form">
+      <div class="form-inner">
+        <div class="quick-pay">
+          <button class="quick-pay-btn link-pay" type="button">
+            <svg width="40" height="18" viewBox="0 0 40 18"><text x="0" y="14" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#00D66F">Link</text></svg>
+          </button>
+          <button class="quick-pay-btn amazon-pay" type="button">
+            <svg width="80" height="18" viewBox="0 0 80 18"><text x="0" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#FF9900">amazon</text><text x="52" y="14" font-family="Inter, sans-serif" font-size="12" font-weight="400" fill="#232F3E">pay</text></svg>
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>Or pay with card</span>
+        </div>
+
+        <form id="checkout-form" novalidate>
+          <!-- Shipping Information -->
+          <fieldset class="form-section">
+            <legend>Shipping information</legend>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="first-name">First name</label>
+                <input type="text" id="first-name" name="first_name" autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label for="last-name">Last name</label>
+                <input type="text" id="last-name" name="last_name" autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="company">Company <span class="optional">(optional)</span></label>
+              <input type="text" id="company" name="company" autocomplete="organization">
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <select id="country" name="country" autocomplete="country">
+                <option value="US" selected>United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" autocomplete="street-address" required>
+            </div>
+
+            <div class="field-row field-row-3">
+              <div class="field">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" autocomplete="address-level2" required>
+              </div>
+              <div class="field">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" autocomplete="address-level1" required>
+              </div>
+              <div class="field">
+                <label for="zip">ZIP</label>
+                <input type="text" id="zip" name="zip" autocomplete="postal-code" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone <span class="optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+          </fieldset>
+
+          <!-- Payment Method -->
+          <fieldset class="form-section">
+            <legend>Payment method</legend>
+
+            <div class="payment-methods">
+              <label class="payment-option active">
+                <input type="radio" name="payment_method" value="card" checked>
+                <span class="radio-indicator"></span>
+                <span class="payment-label">Card</span>
+                <span class="card-icons">
+                  <span class="card-brand visa">Visa</span>
+                  <span class="card-brand mc">MC</span>
+                  <span class="card-brand amex">Amex</span>
+                </span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="paypal">
+                <span class="radio-indicator"></span>
+                <span class="payment-label">PayPal</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="gpay">
+                <span class="radio-indicator"></span>
+                <span class="payment-label">Google Pay</span>
+              </label>
+            </div>
+
+            <div id="card-fields" class="card-fields">
+              <div class="field">
+                <label for="card-number">Card number</label>
+                <input type="text" id="card-number" name="card_number" placeholder="1234 1234 1234 1234" autocomplete="cc-number" inputmode="numeric">
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="card-expiry">Expiration</label>
+                  <input type="text" id="card-expiry" name="card_expiry" placeholder="MM / YY" autocomplete="cc-exp" inputmode="numeric">
+                </div>
+                <div class="field">
+                  <label for="card-cvc">CVC</label>
+                  <input type="text" id="card-cvc" name="card_cvc" placeholder="CVC" autocomplete="cc-csc" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <label class="save-info">
+            <input type="checkbox" name="save_info">
+            <span class="checkbox-indicator"></span>
+            <span>Save my information for a faster checkout</span>
+          </label>
+
+          <button type="submit" class="btn-pay" id="pay-btn">Pay <span id="pay-amount">$20.98</span></button>
+        </form>
+
+        <p class="powered-by">
+          Powered by <strong>Stripe</strong> (demo) &middot;
+          <a href="index.html">Back to product</a>
+        </p>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>
